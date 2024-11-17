@@ -41,6 +41,5 @@ yarn.lock
 pnpm-lock.yaml
 
 # Ignore SQL backups or dumps
-*.sql
 *.sqlite
 *.db
