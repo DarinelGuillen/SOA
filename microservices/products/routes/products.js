@@ -5,10 +5,10 @@ require('dotenv').config();
 
 // Configuración de la conexión a la base de datos
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
+  host: process.env.DB_HOST || '127.0.0.1',
+  user: process.env.DB_USER || 'root',
+  database: process.env.DB_NAME || 'SOA',
+  password: process.env.DB_PASS || '',
 });
 
 // Obtener todos los productos

@@ -12,7 +12,7 @@ def run_command(command, cwd=None):
 
 def install_npm_dependencies(root_dirs):
     """Recursively installs npm dependencies in given directories."""
-    print("\nInstalling npm dependencies...")
+    print("\nChecking and installing npm dependencies...")
     for root_dir in root_dirs:
         for path in Path(root_dir).rglob("package.json"):
             npm_dir = path.parent
@@ -27,13 +27,6 @@ def install_npm_dependencies(root_dirs):
                 print(f"Installing dependencies in: {npm_dir}")
                 run_command("npm install", cwd=npm_dir)
 
-def start_services(services):
-    """Starts services as specified in the list."""
-    print("\nStarting services...")
-    for service_name, start_command, cwd in services:
-        print(f"Starting {service_name}...")
-        run_command(start_command, cwd=cwd)
-
 if __name__ == "__main__":
     # Define root directories to search for npm projects
     npm_project_dirs = [
@@ -41,17 +34,5 @@ if __name__ == "__main__":
         "microservices"
     ]
 
-    # Define services to start
-    services_to_start = [
-        ("Python Services", "python services.py", "."),
-        ("API Gateway", "npm start", "api-gateway"),
-        ("Orders Microservice", "npm start", "microservices/orders"),
-        ("Products Microservice", "npm start", "microservices/products"),
-        ("Users Microservice", "npm start", "microservices/users")
-    ]
-
     # Install npm dependencies
     install_npm_dependencies(npm_project_dirs)
-
-    # Start services
-    start_services(services_to_start)
